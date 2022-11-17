@@ -44,7 +44,6 @@ router.get('/user/:id', function(req, res) {
  * @param   {string}            object.name A string for the name of the user
  * @returns {[Object]}                      Returns an array of one or more objects of the created user
  */
-
 router.post('/makeuser', function(req, res) {
   db.insert(req.body).returning('*').into('users').then(function(data) {
     res.send(data)
