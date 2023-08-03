@@ -4,7 +4,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const dotenv = require('dotenv')
-dotenv.config()
+dotenv.config({path: path.resolve(__dirname,'../.env')})
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
