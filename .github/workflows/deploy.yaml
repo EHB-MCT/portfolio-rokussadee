@@ -7,7 +7,7 @@ on:
     branches: [ main ]
 
   # Allows you to run this workflow manually from the Actions tab
-  workflows_dispatch:
+  workflow_dispatch:
 
 env: 
   POSTGRES_USER: test
