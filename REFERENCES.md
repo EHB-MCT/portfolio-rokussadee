@@ -45,3 +45,4 @@ All used references are listed below, per category.
 ## Other
 
 - Code of Conduct: [Contributer Covenant](https://www.contributor-covenant.org/)
+- [superlinter.yaml](https://github.com/devopsjourney1/mygitactions/blob/main/.github/workflows/superlinter.yml)
