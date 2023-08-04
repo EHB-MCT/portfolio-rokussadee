@@ -1,6 +1,4 @@
-ARG name=portfolio
-
-FROM node:latest
+FROM node:18.12.1
 
 WORKDIR /usr/app
 
@@ -10,5 +8,5 @@ RUN npm install
 
 COPY ./ ./
 
-RUN echo "running ${name}"
+RUN echo "running portfolio"
 CMD ["npm", "start"]

@@ -1,6 +1,6 @@
 /**
  * @param { import("knex").Knex } knex
- * @returns { Promise<void> } 
+ * @returns { Promise<void> }
  */
 
 exports.seed = async function (knex) {
@@ -13,6 +13,6 @@ exports.seed = async function (knex) {
         { id: 1, name: 'Rokus' },
         { id: 2, name: 'Tuur' },
         { id: 3, name: 'Cosima' }
-      ]);
-    });
-};
+      ])
+    })
+}

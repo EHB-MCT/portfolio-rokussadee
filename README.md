@@ -2,8 +2,6 @@
 
 ## Table of Contents
 
-### Table of Contents
-
 - [About the Project](abouttheproject)
 - [Getting Started](gettingstarted)
   - [Installation](installation)

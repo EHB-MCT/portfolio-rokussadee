@@ -1,4 +1,5 @@
 // Update with your config settings.
+const path = require('path')
 const PGDB_PASSWORD = process.env.PGDB_PASSWORD
 
 /**
@@ -11,7 +12,7 @@ module.exports = {
     connection: {
       host: 'localhost',
       database: 'postgres',
-      user:     'postgres',
+      user: 'postgres',
       password: PGDB_PASSWORD
     },
     pool: {
@@ -20,12 +21,12 @@ module.exports = {
     },
     migrations: {
       tableName: 'knex_migrations',
-      directory: `${__dirname}/db/migrations`
+      directory: path.join(__dirname, '/db/migrations')
     },
     seeds: {
-      directory: `${__dirname}/db/seeds`
+      directory: path.join(__dirname, '/db/seeds')
     }
-  },
+  }
 
   // staging: {
   //   client: 'postgresql',
@@ -58,4 +59,5 @@ module.exports = {
   //     tableName: 'knex_migrations'
   //   }
   // }
-};
+}
+
