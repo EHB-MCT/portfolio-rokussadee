@@ -22,7 +22,7 @@
 
 ## References
 
-See [REFERENCES.ms](`REFERENCES.md`)
+See [REFERENCES.md](`REFERENCES.md`)
 
 ## Contributing
 
