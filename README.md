@@ -22,12 +22,12 @@
 
 ## References
 
-See [REFERENCES.md](`REFERENCES.md`)
+See [`REFERENCES.md`](REFERENCES.md)
 
 ## Contributing
 
-See [CONTRIBUTING](`CONTRIBUTING.md`)
+See [`CONTRIBUTING`](CONTRIBUTING.md)
 
 ## License
 
-This project is released under the [MIT](https://opensource.org/license/mit/) License (see [LICENSE.txt](`LICENSE.txt`)).
+This project is released under the [MIT](https://opensource.org/license/mit/) License (see [`LICENSE.txt`](LICENSE.txt)).
