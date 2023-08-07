@@ -4,12 +4,15 @@ const path = require('path')
 const cookieParser = require('cookie-parser')
 const logger = require('morgan')
 const dotenv = require('dotenv')
+const cors = require('cors')
 dotenv.config({ path: path.resolve(__dirname, '../.env') })
 
 const indexRouter = require('./routes/index')
 const usersRouter = require('./routes/users')
 
 const app = express()
+
+app.use(cors())
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'))
