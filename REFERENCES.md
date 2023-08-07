@@ -26,6 +26,14 @@ All used references are listed below, per category.
 - [WebSocket Audio](https://github.com/SamuelFisher/WebSocketAudio)
 - [MQTT Over Websockets Explained for Beginners ](https://www.youtube.com/watch?v=EvUI4vRhF88)
 - [Socket.io: Get Started](https://socket.io/get-started/chat/)
+- [Learn Socket.io In 30 Minutes ](https://www.youtube.com/watch?v=ZKEqqIO7n-k)
+- [Socket.io Uncaught TypeError: Cannot read property 'apply' of undefined](https://stackoverflow.com/questions/53311432/socket-io-uncaught-typeerror-cannot-read-property-apply-of-undefined)
+- [CORS header 'Access-Control-Allow-Origin' does not match... but it does‼](https://stackoverflow.com/questions/35303654/cors-header-access-control-allow-origin-does-not-match-but-it-does)
+- [socket.IO: Handling CORS](https://socket.io/docs/v4/handling-cors/)
+- [socket.IO): Client Initialization](https://socket.io/docs/v4/client-initialization/)
+- [The Socket instance (client-side)](https://socket.io/docs/v3/client-socket-instance/)
+- [Realtime Sound/Audio bot using React hooks and Socket.io! ](https://www.youtube.com/watch?v=sQTFXa_tarw)
+- [Node js + Peer js + Socket io, Audio Video Peer to Peer Calling](https://www.youtube.com/watch?v=D6mAnH9CIeo)
 
 ## Express
 
@@ -46,3 +54,4 @@ All used references are listed below, per category.
 
 - Code of Conduct: [Contributer Covenant](https://www.contributor-covenant.org/)
 - [superlinter.yaml](https://github.com/devopsjourney1/mygitactions/blob/main/.github/workflows/superlinter.yml)
+- [Webpack Bundle Analyzer](https://github.com/webpack-contrib/webpack-bundle-analyzer)
