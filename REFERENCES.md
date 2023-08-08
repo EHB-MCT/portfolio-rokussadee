@@ -30,10 +30,22 @@ All used references are listed below, per category.
 - [Socket.io Uncaught TypeError: Cannot read property 'apply' of undefined](https://stackoverflow.com/questions/53311432/socket-io-uncaught-typeerror-cannot-read-property-apply-of-undefined)
 - [CORS header 'Access-Control-Allow-Origin' does not match... but it does‼](https://stackoverflow.com/questions/35303654/cors-header-access-control-allow-origin-does-not-match-but-it-does)
 - [socket.IO: Handling CORS](https://socket.io/docs/v4/handling-cors/)
-- [socket.IO): Client Initialization](https://socket.io/docs/v4/client-initialization/)
+- [socket.IO: Client Initialization](https://socket.io/docs/v4/client-initialization/)
+- [socket.IO: Emitting events](https://socket.io/docs/v4/emitting-events/)
 - [The Socket instance (client-side)](https://socket.io/docs/v3/client-socket-instance/)
-- [Realtime Sound/Audio bot using React hooks and Socket.io! ](https://www.youtube.com/watch?v=sQTFXa_tarw)
 - [Node js + Peer js + Socket io, Audio Video Peer to Peer Calling](https://www.youtube.com/watch?v=D6mAnH9CIeo)
+- [Full Socket.io and React.js Online Multiplayer Tic-Tac-Toe Game | Socket.io From Zero To Hero](https://www.youtube.com/watch?v=aA_SdbGD64E)
+- [socket.IO - Rooms](https://www.tutorialspoint.com/socket.io/socket.io_rooms.htm)
+- [Writing Integration Tests for WebSocket Servers Using Jest and WS](https://thomason-isaiah.medium.com/writing-integration-tests-for-websocket-servers-using-jest-and-ws-8e5c61726b2a)
+
+## Web Audio
+
+- [Playing with MIDI in JavaScript](https://medium.com/swinginc/playing-with-midi-in-javascript-b6999f2913c3)
+- [Tone.js](https://tonejs.github.io/)
+- [Make a JavaScript Drum Kit in Vanilla JS! #JavaScript30 1/30](https://www.youtube.com/watch?v=VuN8qwZoego)
+- [Realtime Sound/Audio bot using React hooks and Socket.io! ](https://www.youtube.com/watch?v=sQTFXa_tarw)
+- [Building a Modular Synth With JavaScript and Web Audio API](https://medium.com/geekculture/building-a-modular-synth-with-web-audio-api-and-javascript-d38ccdeca9ea)
+- [Example and tutorial: Simple synth keyboard](https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API/Simple_synth)
 
 ## Express
 
