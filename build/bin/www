@@ -20,12 +20,23 @@ app.set('port', port);
 
 var server = http.createServer(app);
 
+/**
+ *  Import socket.io and pass server to socket instance
+ */
+
 const {Server} = require('socket.io')
+const { instrument } = require('@socket.io/admin-ui')
 
 const io = new Server(server,{
   cors: {
-    origin: "http://127.0.0.1:8080",
+    origin: ["http://127.0.0.1:8080", "https://admin.socket.io"],
+    credentials: true
   }
+});
+
+instrument(io, {
+  auth: false,
+  mode: "development"
 });
 
 /**
@@ -97,6 +108,6 @@ function onListening() {
     ? 'pipe ' + addr
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
-  console.log('listening on port ',addr.port)
+  console.log('listening on ',addr.port)
 }
 

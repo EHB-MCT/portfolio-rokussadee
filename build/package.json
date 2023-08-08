@@ -4,10 +4,11 @@
   "private": true,
   "type": "commonjs",
   "scripts": {
-    "start": "set NODE_ENV=dev&& nodemon ./bin/www",
-    "test": "jest --watchAll"
+    "start": "set NODE_ENV=dev&& nodemon --watch ./bin --watch app.js --watch socketapi.js ./bin/www",
+    "test": "jest --watchAl"
   },
   "dependencies": {
+    "@socket.io/admin-ui": "^0.5.1",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "dotenv": "^16.0.3",
@@ -18,6 +19,7 @@
     "morgan": "~1.9.1",
     "node": "^19.1.0",
     "nodemon": "^2.0.20",
+    "passport": "^0.6.0",
     "pg": "^8.8.0",
     "postgres": "^3.3.1",
     "pug": "^3.0.2",
