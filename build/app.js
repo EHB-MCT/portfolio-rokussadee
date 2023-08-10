@@ -11,6 +11,7 @@ const indexRouter = require('./routes/index')
 const usersRouter = require('./routes/users')
 
 const app = express()
+app.use(express.static(path.join(__dirname, '../client/dist')));
 
 app.use(cors())
 

@@ -1,14 +1,15 @@
 const express = require('express')
 const router = express.Router()
 const db = require('../services/DB')
+const { path } = require('../app')
 
 /**
  * GET the home page
  *
  * @returns {Object}  An object containing a key-value pair: message(string)
 */
-router.get('/', function (req, res, next) {
-  res.send({ message: 'hello' })
+router.get('/', function (req, res) {
+  res.sendFile('index.html', {root: 'client'})
 })
 
 /**
