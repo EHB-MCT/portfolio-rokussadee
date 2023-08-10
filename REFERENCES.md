@@ -32,6 +32,9 @@ All used references are listed below, per category.
 - [socket.IO: Handling CORS](https://socket.io/docs/v4/handling-cors/)
 - [socket.IO: Client Initialization](https://socket.io/docs/v4/client-initialization/)
 - [socket.IO: Emitting events](https://socket.io/docs/v4/emitting-events/)
+- [socket.IO: How to use with React](https://socket.io/how-to/use-with-react#docusaurus_skipToContent_fallback)
+- [socket.IO: Logging and debugging](https://socket.io/docs/v4/logging-and-debugging/)
+- [soket.IO: Rooms](https://socket.io/docs/v4/rooms/)
 - [The Socket instance (client-side)](https://socket.io/docs/v3/client-socket-instance/)
 - [Node js + Peer js + Socket io, Audio Video Peer to Peer Calling](https://www.youtube.com/watch?v=D6mAnH9CIeo)
 - [Full Socket.io and React.js Online Multiplayer Tic-Tac-Toe Game | Socket.io From Zero To Hero](https://www.youtube.com/watch?v=aA_SdbGD64E)
@@ -50,6 +53,11 @@ All used references are listed below, per category.
 ## Express
 
 - [How to connect your ExpressJS app with Postgres using Knex](https://dev.to/mandeepm91/how-to-connect-your-expressjs-app-with-postgres-using-knex-76)
+
+## React
+
+- [React: Hooks](https://react.dev/reference/react/useState)
+- [React Developer Tools](https://react.dev/learn/react-developer-tools)
 
 ## Markdown
 
