@@ -58,6 +58,7 @@ All used references are listed below, per category.
 
 - [React: Hooks](https://react.dev/reference/react/useState)
 - [React Developer Tools](https://react.dev/learn/react-developer-tools)
+- [PERN Stack Course - Postgres, Express, React, and Node](https://www.youtube.com/watch?v=ldYcgPKEZC8)
 
 ## Markdown
 
