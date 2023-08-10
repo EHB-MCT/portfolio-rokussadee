@@ -14,7 +14,6 @@ node_modules/
 jspm_packages/
 **/dist/*.js
 **/dist/*.json
-**/dist/*.txt
 
 # Optional npm cache directory
 .npm
