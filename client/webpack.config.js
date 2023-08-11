@@ -1,11 +1,15 @@
 const path = require("path");
+//const dotenv = require("dotenv")
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+//dotenv.config({ path: path.resolve(__dirname, './.env') })
+//const NodePolyfillPlugin = require("node-polyfill-webpack-plugin");
 
 module.exports = ({ mode } = { mode: "production" }) => {
     console.log(`mode is: ${mode}`);
 
     return {
+//      target: "node",
       mode,
       entry: "./src/index.js",
       devServer: {
@@ -18,12 +22,17 @@ module.exports = ({ mode } = { mode: "production" }) => {
                 filename: "index.js"
             },
             plugins: [
+//             new webpack.DefinePlugin({
+//      process: {env: {}}
+//  }),
+//              new webpack.EnvironmentPlugin(['REACT_APP_API_URL']),
                 new HtmlWebpackPlugin({
                   template: "./dist/index.html",
                   minify: false,
                   inject: false
                 }),
-              new webpack.HotModuleReplacementPlugin()
+              new webpack.HotModuleReplacementPlugin(),
+//                      new NodePolyfillPlugin()
             ],
       module: {
       rules: [
