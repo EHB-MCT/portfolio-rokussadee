@@ -1,12 +1,26 @@
-module.exports = function (io) {
+const socketIo = require('socket.io')
+const {v4:uuidv4} = require('uuid')
+
+function setupSocketIO (server) {
+  const io = socketIo(server, {
+  cors: {
+    origin: ["http://127.0.0.1:8080","http://localhost:8080", "https://admin.socket.io"],
+    credentials: true
+  }
+})
+
+
   io.on('connection', (socket) => {
+
     console.log('A user connected');
     console.log(socket.id)
     
     // Handle socket events
-    socket.on('event-name', data => {
+    socket.on('create-roomid', () => {
       // Handle the event and broadcast to other clients
-      socket.broadcast.emit('event-name', data);
+      console.log('create-roomid socket hit');
+      const id = uuidv4()
+      socket.emit('receive-roomid', id);
     });
   
     socket.on('disconnect', () => {
@@ -29,5 +43,8 @@ module.exports = function (io) {
     })
   });
 
+  return io
+
 }
 
+module.exports = setupSocketIO

@@ -1,6 +1,11 @@
 // Update with your config settings.
 const path = require('path')
-const PGDB_PASSWORD = process.env.PGDB_PASSWORD
+const dbConfig = {
+  host: process.env.PGDB_HOST, 
+  database: process.env.PGDB_NAME,
+  user: process.env.PGDB_USER, 
+  password: process.env.PGDB_PASSWORD
+};
 
 /**
  * @type { Object.<string, import("knex").Knex.Config> }
@@ -10,10 +15,7 @@ module.exports = {
   development: {
     client: 'pg',
     connection: {
-      host: 'localhost',
-      database: 'postgres',
-      user: 'postgres',
-      password: PGDB_PASSWORD
+      ...dbConfig
     },
     pool: {
       min: 2,
