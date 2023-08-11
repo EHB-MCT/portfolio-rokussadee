@@ -1,7 +1,8 @@
 const express = require('express')
 const router = express.Router()
 const db = require('../services/DB')
-const { path } = require('../app')
+const path = require('path')
+const http = require('http')
 
 /**
  * GET the home page
@@ -9,7 +10,28 @@ const { path } = require('../app')
  * @returns {Object}  An object containing a key-value pair: message(string)
 */
 router.get('/', function (req, res) {
-  res.sendFile('index.html', {root: 'client'})
+})
+
+router.post('/create-room', async function(req,res) {
+  console.log(req.body)
+  const room_id = req.body.room_id
+  try {
+    const existingRoom = await db.table('rooms').where('room_id', room_id).first();
+    console.log('existingRoom: ',existingRoom)
+    if (existingRoom) {
+      res.send(existingRoom)
+    } else {
+      const roomData = {
+        room_id: room_id 
+      }
+      const newRoom = await db.insert(roomData).returning('*').into('rooms')
+      console.log('newRoom: ', newRoom)
+      res.send(newRoom[0])
+    }
+  } catch(error) {
+    console.error('Error in POST "create-room":', error)
+    throw error
+  }
 })
 
 /**
@@ -19,6 +41,7 @@ router.get('/', function (req, res) {
  */
 router.get('/allusers', function (req, res) {
   db.table('users').select().then(data => {
+    console.log(data)
     res.send(data)
   })
 })
