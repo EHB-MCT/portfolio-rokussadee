@@ -1,8 +1,9 @@
 const express = require('express')
 const router = express.Router()
-const db = require('../services/DB')
 const path = require('path')
 const http = require('http')
+const validateUuid = require('uuid-validate')
+const dbFunctions = require('../db/dbfunctions.js')
 
 /**
  * GET the home page
@@ -12,27 +13,73 @@ const http = require('http')
 router.get('/', function (req, res) {
 })
 
-router.post('/create-room', async function(req,res) {
+//router.post('/save-room', async function(req,res) {
+//  console.log(req.body)
+//  const room_id = req.body.room_id
+//  if (validateUuid(room_id, 4)) {
+//    try {
+//      const existingRoom = await dbFunctions.findExistingRoom(room_id)
+//        console.log('existingRoom: ', existingRoom)
+//      if (existingRoom) {
+//        const existingRoomResponse = {
+//          is_new: false,
+//          room: existingRoom
+//        }
+//        res.send(existingRoomResponse)
+//      } else {
+//        const roomData = {
+//          room_id: room_id 
+//        }
+//        const newRoom = await dbFunctions.insertNewRoom(roomData)
+//        const newRoomResponse = {
+//          is_new: true,
+//          room: newRoom[0]
+//        }
+//        res.send(newRoomResponse)
+//      }
+//    } catch(error) {
+//      console.error('Error in POST "save-room":', error)
+//      throw error
+//    }
+//  } else {
+//    throw(new Error("room_id was not a valid uuid (v4)"))
+//  }
+//})
+
+router.post('/save-room', async function(req,res) {
   console.log(req.body)
   const room_id = req.body.room_id
-  try {
-    const existingRoom = await db.table('rooms').where('room_id', room_id).first();
-    console.log('existingRoom: ',existingRoom)
-    if (existingRoom) {
-      res.send(existingRoom)
-    } else {
-      const roomData = {
-        room_id: room_id 
+  if (validateUuid(room_id, 4)) {
+    try {
+      const existingRoom = await dbFunctions.findExistingRoom(room_id)
+        console.log('existingRoom: ', existingRoom)
+      if (existingRoom) {
+        const existingRoomResponse = {
+          is_new: false,
+          room: existingRoom
+        }
+        console.log('existingRoomResponse:', existingRoomResponse)
+        res.send(existingRoomResponse)
+      } else {
+        const roomData = {
+          room_id: room_id 
+        }
+        const newRoom = await dbFunctions.insertNewRoom(roomData)
+        const newRoomResponse= {
+          is_new: true,
+          room: newRoom[0]
+        }
+        console.log('newRoomResponse:', newRoomResponse)
+        res.send(newRoomResponse)
       }
-      const newRoom = await db.insert(roomData).returning('*').into('rooms')
-      console.log('newRoom: ', newRoom)
-      res.send(newRoom[0])
-    }
-  } catch(error) {
-    console.error('Error in POST "create-room":', error)
-    throw error
+    } catch(error) {
+      console.error('Error in POST "save-room":', error)
+      throw error
+    };
+  } else {
+    throw(new Error("room_id was not a valid uuid (v4)"))
   }
-})
+});
 
 /**
  * GET all users saved in the database

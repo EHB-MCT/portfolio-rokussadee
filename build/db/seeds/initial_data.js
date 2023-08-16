@@ -15,4 +15,11 @@ exports.seed = async function (knex) {
         { id: 3, name: 'Cosima' }
       ])
     })
+  await knex('rooms')
+  .del()
+  .then(function () {
+    return knex('rooms').insert([
+      {id: 1, room_id: '5f6d6a46-0c68-404a-af23-fd6d3da4ebd9'}
+    ])
+  })
 }
