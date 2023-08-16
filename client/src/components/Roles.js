@@ -22,6 +22,7 @@ function Roles({updateRole}) {
 
   const handleRoomId = (id) => {
     setRoomId(id)
+    sessionStorage.setItem('room_id', id)
   }
 
   useEffect(() => {
@@ -30,7 +31,7 @@ function Roles({updateRole}) {
   
     socket.on('increment-rollcount', handleIncrementRollCount);
 
-    socket.on('receive-roomid', handleRoomId)
+    socket.on('receive-room_id', handleRoomId)
   
     // Detach socket event listeners when the component unmounts
     return () => {
@@ -39,18 +40,18 @@ function Roles({updateRole}) {
     };
   }, []);
 
-  useEffect(() => {
-    console.log(rollCount)
-    if (rollCount === 3) {
-      socket.emit('create-roomid')
-    }
-  }, [rollCount]);
+useEffect(() => {
+  console.log(rollCount)
+  if (rollCount === 3) {
+    updateRole(userRole)
+  }
+}, [rollCount]);
 
 
-  useEffect(() => {
-    console.log('roomId: ', roomId, roomId == '')
-    if(roomId !== '') nextPage(roomId)
-  }, [roomId])
+//  useEffect(() => {
+//    console.log('roomId: ', roomId, roomId == '')
+//    if(roomId !== '') nextPage(roomId)
+//  }, [roomId])
 
   // Function to handle role button clicks
   const handleRoleClick = (role) => {
@@ -69,15 +70,14 @@ function Roles({updateRole}) {
     color:  userRole === role ? 'blue' : 'initial',
   });
 
-  const nextPage = async (id) => {
-    //TODO: axios post request to '/create-room'
+  const saveRoom = async (id) => {
+    //TODO: axios post request to '/save-room'
     try {
       apiService.createNewRoom(id)
       .then(response => response.data)
       .then(data => {
-        console.log('new room created', data)
+        console.log(`room with id ${roomId} has been saved to the db: `, data)
       })
-      updateRole(userRole)
     } catch(e) {
       console.error('error creating new room: ', e)
     }

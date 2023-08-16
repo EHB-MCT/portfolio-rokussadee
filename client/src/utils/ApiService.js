@@ -10,7 +10,7 @@ class ApiService{
     return response
   }
   async createNewRoom(id) {
-    const response = await axios.post('/rooms/create-room', {
+    const response = await axios.post('/rooms/save-room', {
       room_id: id
     })
     console.log(response)

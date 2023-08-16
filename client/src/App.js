@@ -13,7 +13,7 @@ function App() {
   return (
     <div>
       <Roles updateRole={updateRole} />
-      <Instrument passedRole={userRole} />
+    {userRole && <Instrument passedRole={userRole} />}
     </div>
   );
 }
