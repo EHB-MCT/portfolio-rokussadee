@@ -19,8 +19,9 @@ function setupSocketIO (server) {
     //TODO: check if connented users count is a modulo of 3
     //if so, it is the turn of the last connected user to create a new room
     //if not, get the id of the last created room and join that room 
+    console.log((io.engine.clientsCount - 1) % 3)
     
-    if(io.engine.clientsCount - 1 % 3 === 0) {
+    if((io.engine.clientsCount - 1) % 3 === 0) {
       //create room
       console.log('connected socker is first of three users')
       createNewRoom(socket)
