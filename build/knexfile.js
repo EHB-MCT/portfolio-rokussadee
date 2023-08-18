@@ -1,5 +1,9 @@
 // Update with your config settings.
+const dotenv = require('dotenv')
 const path = require('path')
+
+dotenv.config()
+
 const dbConfig = {
   host: process.env.PGDB_HOST, 
   database: process.env.PGDB_NAME,
@@ -10,7 +14,7 @@ const dbConfig = {
 /**
  * @type { Object.<string, import("knex").Knex.Config> }
  */
-module.exports = {
+const config = {
 
   development: {
     client: 'pg',
@@ -61,4 +65,8 @@ module.exports = {
   //     tableName: 'knex_migrations'
   //   }
   // }
+}
+
+module.exports = {
+  config
 }
