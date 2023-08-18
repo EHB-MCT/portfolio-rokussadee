@@ -4,8 +4,8 @@
   "private": true,
   "type": "commonjs",
   "scripts": {
-    "start": "set NODE_ENV=dev&& nodemon --watch ./routes --watch ./bin --watch app.js --watch socketapi.js ./bin/www",
-    "test": "jest --watchAl"
+    "start": "set NODE_ENV=dev&& nodemon --watch ./routes --watch ./services --watch ./bin --watch app.js --watch socketapi.js ./bin/www",
+    "test": "jest --watchAll"
   },
   "dependencies": {
     "@socket.io/admin-ui": "^0.5.1",

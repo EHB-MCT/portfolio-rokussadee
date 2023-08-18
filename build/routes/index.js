@@ -4,6 +4,7 @@ const path = require('path')
 const http = require('http')
 const validateUuid = require('uuid-validate')
 const dbFunctions = require('../db/dbfunctions.js')
+const { pbkdf2 } = require('crypto')
 
 /**
  * GET the home page
@@ -45,7 +46,13 @@ router.get('/', function (req, res) {
 //    throw(new Error("room_id was not a valid uuid (v4)"))
 //  }
 //})
+//
 
+/**
+ *
+ *
+ *
+*/
 router.post('/save-room', async function(req,res) {
   console.log(req.body)
   const room_id = req.body.room_id
@@ -58,8 +65,7 @@ router.post('/save-room', async function(req,res) {
           is_new: false,
           room: existingRoom
         }
-        console.log('existingRoomResponse:', existingRoomResponse)
-        res.send(existingRoomResponse)
+        res.status(200).send(existingRoomResponse)
       } else {
         const roomData = {
           room_id: room_id 
@@ -69,15 +75,13 @@ router.post('/save-room', async function(req,res) {
           is_new: true,
           room: newRoom[0]
         }
-        console.log('newRoomResponse:', newRoomResponse)
-        res.send(newRoomResponse)
+        res.status(200).send(newRoomResponse)
       }
     } catch(error) {
-      console.error('Error in POST "save-room":', error)
-      throw error
+      res.status(500).send({error: "Error in POST /rooms/save-room"});
     };
   } else {
-    throw(new Error("room_id was not a valid uuid (v4)"))
+    res.status(400).send({error: "room_id was not a valid uuid (v4)"})
   }
 });
 
