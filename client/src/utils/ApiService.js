@@ -16,6 +16,19 @@ class ApiService{
     console.log(response)
     return response
   }
+  async createNewUser(userName) {
+    const response = await axios.post('users/save-user', {
+      user_name: userName
+    })
+    return response
+  }
+  async saveRelationship(dbID, userID) {
+    const response = await axios.post('rooms/save-relationship', {
+      room_id: dbID,
+      user_id: userID
+    })
+    return response
+  }
   async getAllUsers() {
     console.log('ApiService/getAllUsers gets hit')
     const response = await axios.get('/rooms/allusers');

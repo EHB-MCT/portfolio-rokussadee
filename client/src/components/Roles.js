@@ -1,16 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 
 import socket from '../utils/client'; // Import the socket instance
-import {apiService} from '../utils/ApiService';
+import { apiService } from '../utils/ApiService';
 
 const buttonNames = ['drummer', 'synth', 'composer']
 
 function Roles({updateRole}) {
   // ... React component code
+  const [username, setUsername] = useState('')
   const [userRole, setUserRole] = useState('');
   const [removedRoles, setRemovedRoles] = useState([]);
   const [rollCount, setRollCount] = useState(0);
-  const [roomId, setRoomId] = useState('');
+  const [userID, setUserID] = useState()
+  const [roomID, setRoomID] = useState()
 
   const handleRemoveRole = (role) => {
     setRemovedRoles((prevRemovedRoles) => [...prevRemovedRoles, role]);
@@ -21,8 +23,12 @@ function Roles({updateRole}) {
   };
 
   const handleRoomId = (id) => {
-    setRoomId(id)
+    setRoomID(id)
     sessionStorage.setItem('room_id', id)
+  }
+
+  const handleUserId = (id) => {
+    setUserID(id)
   }
 
   useEffect(() => {
@@ -39,21 +45,19 @@ function Roles({updateRole}) {
       socket.off('increment-rollcount', handleIncrementRollCount);
     };
   }, []);
+  
+  useEffect(() => {
+    console.log(rollCount)
+    if (rollCount === 3) {
+      updateRole(userRole)
+    }
+  }, [rollCount]);
 
-useEffect(() => {
-  console.log(rollCount)
-  if (rollCount === 3) {
-    updateRole(userRole)
-  }
-}, [rollCount]);
+  useEffect(() => {
+    userID !== '' ? sessionStorage.setItem('user_id', userID) : null
+//    socket.emit('room_users_data', {room_uuid: roomID, user_id: userID})
+  }, [userID])
 
-
-//  useEffect(() => {
-//    console.log('roomId: ', roomId, roomId == '')
-//    if(roomId !== '') nextPage(roomId)
-//  }, [roomId])
-
-  // Function to handle role button clicks
   const handleRoleClick = (role) => {
     if (role === '') return;
 
@@ -64,40 +68,57 @@ useEffect(() => {
   }
 
   const isButtonDisabled = (role) => removedRoles.includes(role);
+  const isUsernameDisabled = () => 8<=username.length && username.length<=15
   
   const getButtonStyle = (role) => ({
     borderColor:  userRole === role ? 'blue' : 'initial',
     color:  userRole === role ? 'blue' : 'initial',
   });
 
-  const saveRoom = async (id) => {
-    //TODO: axios post request to '/save-room'
+  const saveUser = async () => {
     try {
-      apiService.createNewRoom(id)
+      apiService.createNewUser(username)
       .then(response => response.data)
-      .then(data => {
-        console.log(`room with id ${roomId} has been saved to the db: `, data)
+      .then((data) => {
+        console.log(data.user.id)
+        handleUserId(data.user.id)
+      })
+      .then(() => {
+        console.log(userID)
       })
     } catch(e) {
-      console.error('error creating new room: ', e)
+      console.error('error creating new user: ', e)
     }
   }
 
   return (
-    <div>
-      {buttonNames.map((role) => (
-        <button 
-          className="button" 
-          id={role}
-        key={role}
-        name={role}
-        onClick={() => handleRoleClick(role)} 
-        disabled={isButtonDisabled(role)}
-        style={getButtonStyle(role)}>
-          {role}
-        </button>
-      ))}
-    </div>
+    <Fragment>
+      <div>
+      <label>
+        username:
+        <input value={username} onChange={e => setUsername(e.target.value) } name='username'/>
+      </label>
+      <button onClick={() => saveUser()} disabled={!isUsernameDisabled()}>
+        Save username
+      </button>
+      </div>
+      { userID &&
+        <div>
+          {buttonNames.map((role) => (
+            <button 
+              className="button" 
+              id={role}
+            key={role}
+            name={role}
+            onClick={() => handleRoleClick(role)} 
+            disabled={isButtonDisabled(role)}
+            style={getButtonStyle(role)}>
+              {role}
+            </button>
+          ))}
+        </div>
+        }
+    </Fragment>
   );
 
 }
