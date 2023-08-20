@@ -1,7 +1,8 @@
 const request = require('supertest')
 const dbFunctions = require('../db/dbfunctions')
 const {v4:uuidv4} = require('uuid')
-const app = require('../app.js')
+const app = require('../app.js');
+const { describe } = require('node:test');
 
 describe('Room Creation API', () => {
   it('should save a new room in the database', async () => {
@@ -58,3 +59,40 @@ describe('Room Creation API', () => {
 
 });
 
+describe('Save Relationship API', () => {
+  it('should save a new relationship in the database', async () => {
+    const room_id = 112;
+    const user_id = 1; 
+    
+    const res = await request(app)
+      .post('/rooms/save-relationship')
+      .send({ room_id, user_id });
+
+    expect(res.statusCode).toBe(200);
+    expect(res.body.room_id).toBe(room_id);
+    expect(res.body.user_id).toBe(user_id);
+  });
+
+  it('should handle database error', async () => {
+    const room_id = 112;
+    const user_id = 1;
+    
+    dbFunctions.insertNewRelationship = jest.fn().mockRejectedValue(new Error('Database Error'));
+
+    const res = await request(app)
+      .post('/rooms/save-relationship')
+      .send({ room_id, user_id });
+
+    expect(res.statusCode).toBe(500);
+    expect(res.body.error).toBeTruthy();
+  });
+
+  it('should handle missing room_id or user_id', async () => {
+    const res = await request(app)
+      .post('/rooms/save-relationship')
+      .send({});
+
+    expect(res.statusCode).toBe(400);
+    expect(res.body.error).toBeTruthy();
+  });
+});

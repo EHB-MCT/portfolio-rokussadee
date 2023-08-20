@@ -13,9 +13,10 @@ describe("convertMilesToKM test", () => {
 })
 
 describe("checkStringLength test", () => {
-  test("if user inputs a string of less than or equal to 10 characters", () => {
-    expect(helpers.checkStringLength("hello")).toBeTruthy()
-    expect(helpers.checkStringLength("1234567890")).toBeTruthy()
+  test("if user inputs a string of more than or equal to 8 and less than or equal to 15 characters", () => {
+    expect(helpers.checkStringLength("hello")).toBeFalsy()
+    expect(helpers.checkStringLength("pietjepukje")).toBeTruthy()
+    expect(helpers.checkStringLength("12345678")).toBeTruthy()
   })
   test("if user inputs other types", () => {
     expect(helpers.checkStringLength(null)).toBeFalsy()
@@ -24,7 +25,7 @@ describe("checkStringLength test", () => {
     expect(helpers.checkStringLength({})).toBeFalsy()
   })
   test("if user inputs a longer string", () => {
-    expect(helpers.checkStringLength("1 2 3 4 5 6 7 8 9 0")).toBeFalsy()
+    expect(helpers.checkStringLength("1 2 3 4 5 6 7 8 9 0 1 2 3 4 5")).toBeFalsy()
   })
 })
 
