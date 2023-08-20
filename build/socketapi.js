@@ -1,6 +1,6 @@
 const socketIo = require('socket.io')
 const {v4:uuidv4} = require('uuid');
-const {createNewRoom, joinLastCreatedRoom, lastCreatedRoomID} = require('./common/roomManager.js');
+const {createNewRoom, joinLastCreatedRoom, lastCreatedRoomID, linkUserToRoom} = require('./common/roomManager.js');
 
 function setupSocketIO (server) {
   const io = socketIo(server, {
@@ -9,7 +9,8 @@ function setupSocketIO (server) {
     credentials: true
   }
 })
-
+  
+  const roomData = {}
 
   io.on('connection', (socket) => {
     console.log('A user connected');
@@ -29,10 +30,14 @@ function setupSocketIO (server) {
     //always join room with that roomid, whether or not you are the creator
     const room_id = joinLastCreatedRoom(socket)
     socket.emit('receive-room_id', room_id)
+
+    socket.on('room_users_data', (data) => {
+      linkUserToRoom(data.room_id, data.user_id)
+    })
   
     socket.on('disconnect', () => {
       console.log('A user disconnected');
-    console.log('# connections: ', io.engine.clientsCount)
+      console.log('# connections: ', io.engine.clientsCount)
     });
     
     socket.on('connect_error', (e) => {
