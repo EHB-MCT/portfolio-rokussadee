@@ -11,13 +11,26 @@ const helpers = {
     } else return undefined
   },
 
+  createRandomString(length) {
+    let result = '';
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    const charactersLength = characters.length;
+    let counter = 0;
+    while (counter < length) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+      counter += 1;
+    }
+    return result;
+  },
+
+
   /**
-   * checks if string length is smaller than or equal to 10
+   * checks if string length is biggeer than or equal to 8 and smaller than or equal to 15
    * @param {string} str the user given string
    * @returns false if not a string or too long, otherwise true
    */
   checkStringLength (str) {
-    return !!(str && typeof str === 'string' && str.length <= 10)
+    return !!(str && typeof str === 'string' && 8 <= str.length && str.length <= 15)
   },
 
   /**
