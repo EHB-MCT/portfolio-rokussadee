@@ -12,7 +12,17 @@ const configProps = config[environment]
 //console.log('spread props in object: ', configProps)
 
 //const knex = require('knex')({...configProps})
-const knex = require('knex')(config.development)
+let knex
+console.log(process.env.NODE_ENV, process.env.NODE_ENV === 'development')
+
+if(process.env.NODE_ENV === 'development') {
+  console.log(process.env.NODE_ENV)
+  knex = require('knex')(config.development)
+} else if (process.env.NODE_ENV === 'production') {
+    console.log(process.env.NODE_ENV)
+
+  knex = require('knex')(config.production)
+}
 
 module.exports = knex
 

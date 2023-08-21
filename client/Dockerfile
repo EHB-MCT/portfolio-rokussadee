@@ -8,5 +8,8 @@ RUN npm install --quiet
 
 COPY ./ ./
 
-RUN echo "running portfolio API"
+RUN npm run build
+
+EXPOSE 5000
+
 CMD ["npm", "start"]

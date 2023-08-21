@@ -32,7 +32,27 @@ const config = {
     seeds: {
       directory: path.join(__dirname, '/db/seeds')
     }
+  },
+
+  production: {
+    client: 'pg',
+    connection: process.env.PG_CONNECTION_STRING,
+//    connection: {
+//      ...dbConfig
+//    },
+    pool: {
+      min: 2,
+      max: 10
+    },
+    migrations: {
+      tableName: 'knex_migrations',
+      directory: path.join(__dirname, '/db/migrations')
+    },
+    seeds: {
+      directory: path.join(__dirname, '/db/seeds')
+    }
   }
+
 
   // staging: {
   //   client: 'postgresql',

@@ -4,12 +4,14 @@
   "description": "",
   "main": "client.js",
   "scripts": {
+    "start": "react-scripts start",
     "webpack": "webpack",
     "webpack-dev-server": "webpack-dev-server",
     "dev": "npm run webpack-dev-server -- --env mode=development",
     "stats": "webpack-bundle-analyzer dist/compilation-stats.json",
     "build": "webpack",
-    "test": "jest --watchAll"
+    "test": "jest --watchAll",
+    "start":"serve -l 5000 -s dist"
   },
   "author": "rokus sadee",
   "license": "MIT",
@@ -35,6 +37,7 @@
     "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.5.3",
+    "serve": "^14.2.0",
     "socket.io-client": "^4.7.2",
     "url-loader": "^4.1.1",
     "webpack": "^5.88.2",

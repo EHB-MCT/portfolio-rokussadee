@@ -1,0 +1,46 @@
+version: "3.2"
+
+services:
+  api: 
+    build: ./build
+    ports:
+      - 3000:3000
+    depends_on: 
+      - pg-database
+    volumes:
+      - ./build:/usr/app/api
+    environment:
+      PG_DB_CONNECTION_STRING: ${PG_DB_CONNECTION_STRING}
+    networks:
+      - "portfolio"
+
+  react-app:
+    build: ./client
+    ports:
+      - 5000:5000
+    stdin_open: true
+    networks:
+      - "portfolio"
+    depends_on:
+      - api
+
+  pg-database:
+    image: postgres:latest
+    ports: 
+      - 5432:5432
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - ./_backup:/var/lib/postgres/data
+    networks:
+      - "portfolio"
+
+  watchtower:
+    image: containrrr/watchtower
+    volumes:
+      - ./var/run/docker.sock:/var/run/docker.sock
+networks:
+  portfolio:
+    driver: bridge

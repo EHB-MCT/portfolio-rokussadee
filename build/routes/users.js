@@ -33,6 +33,7 @@ router.post('/save-user', async function (req,res) {
         res.status(200).send(newUserResponse)
       }
     } catch(error) {
+      console.log(error)
       res.status(500).send({error: "Error in POST users/save-user"})
     }
   } else {

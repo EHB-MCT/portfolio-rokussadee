@@ -4,7 +4,11 @@
   "private": true,
   "type": "commonjs",
   "scripts": {
-    "start": "set NODE_ENV=dev&& nodemon --watch ./routes --watch ./services --watch ./bin --watch app.js --watch socketapi.js ./bin/www",
+    "migrate":"npx knex migrate:latest",
+    "seed": "npx knex seed:run",
+    "start": "set NODE_ENV=development && nodemon --watch ./routes --watch ./services --watch ./bin --watch app.js --watch socketapi.js ./bin/www ",
+    "start-prod": "set NODE_ENV=production && node ./bin/www   ",
+    "deploy": "npm run start ",
     "test": "jest --watchAll"
   },
   "dependencies": {
